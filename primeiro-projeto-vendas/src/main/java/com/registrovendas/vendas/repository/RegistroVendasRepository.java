@@ -5,5 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
+//Essa Inteface está estendendo o JpaRepository, pois ele trás muitas facilidades de simplificação dos metodos, como delete.
+//O RegistroVendasRepository irá extender o JpaRepository<tipo de dominio que o repositorio gerencia, o tipo de identificador da entidade que o repositorio gerencia>
+//No caso como o repositorio irá gerenciar o Model, esse está sendo informardo, e o id dele também.
 public interface RegistroVendasRepository extends JpaRepository<ResgistrosClientesModel, UUID> {
 }
