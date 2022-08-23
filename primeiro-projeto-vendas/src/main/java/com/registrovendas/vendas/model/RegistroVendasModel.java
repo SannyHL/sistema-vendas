@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity //transforma a classe em entidade, ou seja cada a classe corresponderá a uma tabela.
 @Table(name = "CADASTRO_CLIENTE")
-public class ResgistrosClientesModel implements Serializable {
+public class RegistroVendasModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     //Adição do id da classe, do gerador automatico de id e o tipo de identificador, no caso UUID:
