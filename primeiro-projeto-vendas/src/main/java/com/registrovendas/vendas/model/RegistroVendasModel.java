@@ -1,5 +1,6 @@
 package com.registrovendas.vendas.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity //transforma a classe em entidade, ou seja cada a classe corresponderá a uma tabela.
-@Table(name = "CADASTRO_CLIENTE")
+@Table(name = "CADASTRO_VENDAS")
 public class RegistroVendasModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -22,19 +23,21 @@ public class RegistroVendasModel implements Serializable {
     @Column(nullable = false, unique = true, length = 100)
     private String nomeCliente;
     @Column(nullable = true, unique = true, length = 15)
-    private int telefoneFixoCliente;
+    private String telefoneFixoCliente;
     @Column(nullable = false, unique = false, length = 15)
-    private int celularCliente;
+    private String celularCliente;
     @Column(nullable = true, unique = true, length = 15)
-    private int whatsappCliente;
+    private String whatsappCliente;
     @Column(nullable = true, unique = false, length = 50)
     private String emailCliente;
     @Column(nullable = false, unique = true, length = 50)
     private String produtoComprado;
+    @Column(nullable = false, unique = true, length = 50)
+    private String codigoProduto;
     @Column(nullable = false, unique = true, length = 5)
-    private int quantidadeProduto;
+    private String quantidadeProduto;
     @Column(nullable = false, unique = true, length = 7)
-    private float valorProduto;
+    private String valorProduto;
     @Column(nullable = false)
     private LocalDateTime dataCompra;
 
@@ -54,27 +57,27 @@ public class RegistroVendasModel implements Serializable {
         this.nomeCliente = nomeCliente;
     }
 
-    public int getTelefoneFixoCliente() {
+    public String getTelefoneFixoCliente() {
         return telefoneFixoCliente;
     }
 
-    public void setTelefoneFixoCliente(int telefoneFixoCliente) {
+    public void setTelefoneFixoCliente(String telefoneFixoCliente) {
         this.telefoneFixoCliente = telefoneFixoCliente;
     }
 
-    public int getCelularCliente() {
+    public String getCelularCliente() {
         return celularCliente;
     }
 
-    public void setCelularCliente(int celularCliente) {
+    public void setCelularCliente(String celularCliente) {
         this.celularCliente = celularCliente;
     }
 
-    public int getWhatsappCliente() {
+    public String getWhatsappCliente() {
         return whatsappCliente;
     }
 
-    public void setWhatsappCliente(int whatsappCliente) {
+    public void setWhatsappCliente(String whatsappCliente) {
         this.whatsappCliente = whatsappCliente;
     }
 
@@ -94,19 +97,27 @@ public class RegistroVendasModel implements Serializable {
         this.produtoComprado = produtoComprado;
     }
 
-    public int getQuantidadeProduto() {
+    public String getCodigoProduto() {
+        return codigoProduto;
+    }
+
+    public void setCodigoProduto(String codigoProduto) {
+        this.codigoProduto = codigoProduto;
+    }
+
+    public String getQuantidadeProduto() {
         return quantidadeProduto;
     }
 
-    public void setQuantidadeProduto(int quantidadeProduto) {
+    public void setQuantidadeProduto(String quantidadeProduto) {
         this.quantidadeProduto = quantidadeProduto;
     }
 
-    public float getValorProduto() {
+    public String getValorProduto() {
         return valorProduto;
     }
 
-    public void setValorProduto(float valorProduto) {
+    public void setValorProduto(String valorProduto) {
         this.valorProduto = valorProduto;
     }
 
@@ -118,3 +129,5 @@ public class RegistroVendasModel implements Serializable {
         this.dataCompra = dataCompra;
     }
 }
+
+
