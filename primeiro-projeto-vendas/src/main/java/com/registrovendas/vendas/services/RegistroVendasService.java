@@ -16,4 +16,8 @@ public class RegistroVendasService {
         this.registroVendasRepository = registroVendasRepository;
     }
 
+    @Transactional
+    public RegistroVendasModel create(RegistroVendasModel registroVendasModel) {
+        return registroVendasRepository.save(registroVendasModel);
+    }
 }
