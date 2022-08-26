@@ -11,14 +11,11 @@ public class RegistroVendasDto {
     @Autowired
     private RegistroVendasModel registroVendasModel;
 
-    @NotBlank
-    private String nomeCliente;
-    private String telefoneFixoCliente;
-    private String whatsappCliente;
-    private String emailCliente;
 
     @NotBlank
-    private String celularCliente;
+    private Integer id;
+
+
     @NotBlank
     private String produtoComprado;
     @NotBlank
@@ -28,46 +25,14 @@ public class RegistroVendasDto {
     @NotBlank
     private String valorProduto;
 
-    public String getNomeCliente() {
-        return nomeCliente;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public void setId(Integer id) {
+        this.id = id;
     }
-
-    public String getTelefoneFixoCliente() {
-        return telefoneFixoCliente;
-    }
-
-    public void setTelefoneFixoCliente(String telefoneFixoCliente) {
-        this.telefoneFixoCliente = telefoneFixoCliente;
-    }
-
-    public String getWhatsappCliente() {
-        return whatsappCliente;
-    }
-
-    public void setWhatsappCliente(String whatsappCliente) {
-        this.whatsappCliente = whatsappCliente;
-    }
-
-    public String getEmailCliente() {
-        return emailCliente;
-    }
-
-    public void setEmailCliente(String emailCliente) {
-        this.emailCliente = emailCliente;
-    }
-
-    public String getCelularCliente() {
-        return celularCliente;
-    }
-
-    public void setCelularCliente(String celularCliente) {
-        this.celularCliente = celularCliente;
-    }
-
     public String getProdutoComprado() {
         return produtoComprado;
     }

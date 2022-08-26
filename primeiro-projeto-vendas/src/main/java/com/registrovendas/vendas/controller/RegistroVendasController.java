@@ -2,7 +2,7 @@ package com.registrovendas.vendas.controller;
 
 import com.registrovendas.vendas.dto.RegistroVendasDto;
 import com.registrovendas.vendas.model.RegistroVendasModel;
-import com.registrovendas.vendas.services.RegistroVendasService;
+import com.registrovendas.vendas.services.RegistrosVendasService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,14 +15,14 @@ import java.time.ZoneId;
 
 @RestController
 @ResponseBody
-@RequestMapping("/vendas")
+@RequestMapping("/venda")
 public class RegistroVendasController {
 
     @Autowired
-    private RegistroVendasService registroVendasService;
+    private RegistrosVendasService registrosVendasService;
 
-    public RegistroVendasController(RegistroVendasService registroVendasService) {
-        this.registroVendasService = registroVendasService;
+    public RegistroVendasController(RegistrosVendasService registrosVendasService) {
+        this.registrosVendasService = registrosVendasService;
     }
 
     @PostMapping("/")
@@ -30,8 +30,9 @@ public class RegistroVendasController {
         var registroVendasModel = new RegistroVendasModel();
         BeanUtils.copyProperties(registroVendasDto, registroVendasModel);
         registroVendasModel.setDataCompra(LocalDateTime.now(ZoneId.of("UTC")));
-        return ResponseEntity.status(HttpStatus.CREATED).body(registroVendasService.create(registroVendasModel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(registrosVendasService.create(registroVendasModel));
     }
+
 
 
 }

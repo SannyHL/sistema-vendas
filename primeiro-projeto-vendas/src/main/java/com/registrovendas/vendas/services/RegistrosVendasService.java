@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 
 @Service
-public class RegistroVendasService {
+public class RegistrosVendasService {
     // criação de um ponto de injeção do repository no service:
 
     final RegistroVendasRepository registroVendasRepository;
 
-    public RegistroVendasService(RegistroVendasRepository registroVendasRepository) {
+    public RegistrosVendasService(RegistroVendasRepository registroVendasRepository) {
         this.registroVendasRepository = registroVendasRepository;
     }
 
@@ -20,4 +20,5 @@ public class RegistroVendasService {
     public RegistroVendasModel create(RegistroVendasModel registroVendasModel) {
         return registroVendasRepository.save(registroVendasModel);
     }
+
 }
