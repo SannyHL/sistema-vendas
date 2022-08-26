@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,14 +23,11 @@ import java.util.UUID;
 @RequestMapping("/clientes")
 public class RegistroClientesController {
 
-    @Autowired
-    private RegistroClientesRepository registroClientesRepository;
 
     @Autowired
     private RegistroClientesService registroClientesService;
 
     public RegistroClientesController(RegistroEnderecoClientesRepository registroEnderecoClientesRepository, RegistroClientesRepository registroClientesRepository, RegistroClientesService registroClientesService) {
-        this.registroClientesRepository = registroClientesRepository;
         this.registroClientesService = registroClientesService;
     }
 
@@ -36,21 +35,46 @@ public class RegistroClientesController {
     public ResponseEntity<RegistroClientesModel> saveRegistroClientesModel(@RequestBody @Valid RegistroClientesDto registroClientesDto){
         var registroClientesModel = new RegistroClientesModel();
         BeanUtils.copyProperties(registroClientesDto, registroClientesModel);
+        registroClientesModel.setDataCadastroCliente(LocalDateTime.now(ZoneId.of("UTC")));
         return ResponseEntity.status(HttpStatus.CREATED).body(registroClientesService.created(registroClientesModel));
     }
 
     @GetMapping("/")
     public ResponseEntity<List<RegistroClientesModel>> getAll(){
-        return new ResponseEntity<List<RegistroClientesModel>>(registroClientesRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(registroClientesService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<RegistroClientesModel> getId(@PathVariable(value = "id")UUID id){
-        Optional<RegistroClientesModel> registroClientesModelOptional = registroClientesRepository.findById(id);
+        Optional<RegistroClientesModel> registroClientesModelOptional = registroClientesService.findById(id);
         if (registroClientesModelOptional.isPresent()){
-            return new ResponseEntity<RegistroClientesModel>(registroClientesModelOptional.get(), HttpStatus.OK);
+            return new ResponseEntity<>(registroClientesModelOptional.get(), HttpStatus.OK);
         }else {
-            return new ResponseEntity<RegistroClientesModel>(HttpStatus.FOUND);
+            return new ResponseEntity<>(HttpStatus.FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<RegistroClientesModel> deleteCliente(@PathVariable(value = "id") UUID id){
+        Optional<RegistroClientesModel> registroClientesModelOptional = registroClientesService.findById(id);
+        if(registroClientesModelOptional.isPresent()){
+            registroClientesService.delete(registroClientesModelOptional.get());
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<RegistroClientesModel> updateCliente(@PathVariable(value = "id") UUID id, @RequestBody @Valid RegistroClientesDto registroClientesDto){
+        Optional<RegistroClientesModel> registroClientesModelOptional = registroClientesService.findById(id);
+        if (registroClientesModelOptional.isPresent()){
+            var registroClientesModel = new RegistroClientesModel();
+            BeanUtils.copyProperties(registroClientesDto, registroClientesModel);
+            registroClientesModel.setId(registroClientesModelOptional.get().getId());
+            registroClientesModel.setDataCadastroCliente(registroClientesModelOptional.get().getDataCadastroCliente());
+            return new ResponseEntity<>(registroClientesService.created(registroClientesModel), HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
