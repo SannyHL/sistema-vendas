@@ -1,6 +1,4 @@
 package com.registrovendas.vendas.dto;
-
-
 import javax.validation.constraints.NotBlank;
 
 public class RegistroClientesDto {
@@ -10,11 +8,12 @@ public class RegistroClientesDto {
     private String nomeCliente;
     @NotBlank
     private String celularCliente;
-
+    @NotBlank
+    private String cpfCliente;
     private String telefoneFixoCliente;
     private String whatsappCliente;
     private String emailCliente;
-    private String cpfCliente;
+
 
     public String getNomeCliente() {
         return nomeCliente;

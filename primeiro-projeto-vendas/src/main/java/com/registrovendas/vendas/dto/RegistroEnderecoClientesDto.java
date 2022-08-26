@@ -1,25 +1,17 @@
 package com.registrovendas.vendas.dto;
-
-import com.registrovendas.vendas.model.RegistroEnderecoClientesModel;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
 
 public class RegistroEnderecoClientesDto {
 
-    @Autowired
-    private RegistroEnderecoClientesModel registroEnderecoClientesModel;
     @NotBlank
     private String id;
-
-
     private String rua;
     private String numero;
     private String bairro;
     private String cidade;
     private String estado;
     private  String pais;
+
 
     public String getId() {
         return id;
@@ -76,4 +68,5 @@ public class RegistroEnderecoClientesDto {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
 }

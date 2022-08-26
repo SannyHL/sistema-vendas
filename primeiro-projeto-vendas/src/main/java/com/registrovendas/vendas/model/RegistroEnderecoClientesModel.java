@@ -1,9 +1,6 @@
 package com.registrovendas.vendas.model;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "REGISTROS_ENDERECO_CLIENTES")
@@ -25,6 +22,9 @@ public class RegistroEnderecoClientesModel {
     private String estado;
     @Column(length = 50)
     private  String pais;
+    @Column(nullable = false)
+    private LocalDateTime dataCadastroEndereco;
+
 
     public String getRua() {
         return rua;
@@ -81,6 +81,15 @@ public class RegistroEnderecoClientesModel {
     public void setId(String id) {
         this.id = id;
     }
+
+    public LocalDateTime getDataCadastroEndereco() {
+        return dataCadastroEndereco;
+    }
+
+    public void setDataCadastroEndereco(LocalDateTime dataCadastroEndereco) {
+        this.dataCadastroEndereco = dataCadastroEndereco;
+    }
+
 
     @OneToOne
     @JoinColumn(name = "registroClientesModel_id")

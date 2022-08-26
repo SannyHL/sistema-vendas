@@ -1,12 +1,8 @@
 package com.registrovendas.vendas.model;
-
-
-
-
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -30,6 +26,9 @@ public class RegistroClientesModel implements Serializable {
     private String emailCliente;
     @Column(unique = true, length = 15)
     private String cpfCliente;
+    @Column(nullable = false)
+    private LocalDateTime dataCadastroCliente;
+
 
     public UUID getId() {
         return id;
@@ -87,23 +86,18 @@ public class RegistroClientesModel implements Serializable {
         this.cpfCliente = cpfCliente;
     }
 
+    public LocalDateTime getDataCadastroCliente() {
+        return dataCadastroCliente;
+    }
+
+    public void setDataCadastroCliente(LocalDateTime dataCadastroCliente) {
+        this.dataCadastroCliente = dataCadastroCliente;
+    }
+
     @OneToOne(mappedBy = "registroClientesModel")
     private RegistroEnderecoClientesModel registroEnderecoClientesModel;
 
     @OneToMany(mappedBy = "registroClientesModel")
     private List<RegistroVendasModel> registroVendasModel;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RegistroClientesModel that = (RegistroClientesModel) o;
-        return Objects.equals(id, that.id) && Objects.equals(nomeCliente, that.nomeCliente) && Objects.equals(telefoneFixoCliente, that.telefoneFixoCliente) && Objects.equals(celularCliente, that.celularCliente) && Objects.equals(whatsappCliente, that.whatsappCliente) && Objects.equals(emailCliente, that.emailCliente) && Objects.equals(cpfCliente, that.cpfCliente) && Objects.equals(registroEnderecoClientesModel, that.registroEnderecoClientesModel) && Objects.equals(registroVendasModel, that.registroVendasModel);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nomeCliente, telefoneFixoCliente, celularCliente, whatsappCliente, emailCliente,
-                cpfCliente, registroEnderecoClientesModel, registroVendasModel);
-    }
 }

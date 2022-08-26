@@ -1,21 +1,11 @@
 package com.registrovendas.vendas.dto;
-
-import com.registrovendas.vendas.model.RegistroVendasModel;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.validation.constraints.NotBlank;
 //Essa classe irá verificar se os campos apontados não são vazios ou nulos.
 
 public class RegistroVendasDto {
 
-    @Autowired
-    private RegistroVendasModel registroVendasModel;
-
-
     @NotBlank
-    private Integer id;
-
-
+    private String id;
     @NotBlank
     private String produtoComprado;
     @NotBlank
@@ -26,11 +16,12 @@ public class RegistroVendasDto {
     private String valorProduto;
 
 
-    public Integer getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
     public String getProdutoComprado() {
@@ -64,5 +55,6 @@ public class RegistroVendasDto {
     public void setValorProduto(String valorProduto) {
         this.valorProduto = valorProduto;
     }
+
 }
 

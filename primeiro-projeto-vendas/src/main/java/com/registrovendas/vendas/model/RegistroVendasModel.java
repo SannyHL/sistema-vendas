@@ -1,12 +1,7 @@
 package com.registrovendas.vendas.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Objects;
-import java.util.UUID;
 
 @Entity //transforma a classe em entidade, ou seja cada a classe corresponderá a uma tabela.
 @Table(name = "CADASTRO_VENDAS")
@@ -30,6 +25,7 @@ public class RegistroVendasModel {
     private String valorProduto;
     @Column(nullable = false)
     private LocalDateTime dataCompra;
+
 
     public String getId() {
         return id;
@@ -70,6 +66,7 @@ public class RegistroVendasModel {
     public void setValorProduto(String valorProduto) {
         this.valorProduto = valorProduto;
     }
+
 
     public LocalDateTime getDataCompra() {
         return dataCompra;
