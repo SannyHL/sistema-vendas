@@ -14,11 +14,6 @@ public class RegistroEnderecoClientesService {
     @Autowired
     private RegistroEnderecoClientesRepository registroEnderecoClientesRepository;
 
-    public RegistroEnderecoClientesService(RegistroEnderecoClientesRepository registroEnderecoClientesRepository) {
-        this.registroEnderecoClientesRepository = registroEnderecoClientesRepository;
-    }
-
-
     @Transactional
     public RegistroEnderecoClientesModel create(RegistroEnderecoClientesModel registroEnderecoClientesModel){
         return registroEnderecoClientesRepository.save(registroEnderecoClientesModel);
