@@ -16,11 +16,6 @@ public class RegistroClientesService {
     @Autowired
     private RegistroClientesRepository registroClientesRepository;
 
-
-    public RegistroClientesService(RegistroClientesRepository registroClientesRepository) {
-        this.registroClientesRepository = registroClientesRepository;
-    }
-
     @Transactional
     public RegistroClientesModel created(RegistroClientesModel registroClientesModel){
         return registroClientesRepository.save(registroClientesModel);
