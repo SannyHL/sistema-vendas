@@ -24,11 +24,6 @@ public class RegistroVendasController {
     @Autowired
     private RegistrosVendasService registrosVendasService;
 
-    public RegistroVendasController(RegistrosVendasService registrosVendasService) {
-        this.registrosVendasService = registrosVendasService;
-    }
-
-
     @PostMapping("/")
     public ResponseEntity<RegistroVendasModel> saveRegistroVendasModel(@RequestBody @Valid RegistroVendasDto registroVendasDto){
         var registroVendasModel = new RegistroVendasModel();
