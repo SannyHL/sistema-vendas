@@ -27,9 +27,7 @@ public class RegistroClientesController {
     @Autowired
     private RegistroClientesService registroClientesService;
 
-    public RegistroClientesController(RegistroEnderecoClientesRepository registroEnderecoClientesRepository, RegistroClientesRepository registroClientesRepository, RegistroClientesService registroClientesService) {
-        this.registroClientesService = registroClientesService;
-    }
+   
 
     @PostMapping("/")
     public ResponseEntity<RegistroClientesModel> saveRegistroClientesModel(@RequestBody @Valid RegistroClientesDto registroClientesDto){
