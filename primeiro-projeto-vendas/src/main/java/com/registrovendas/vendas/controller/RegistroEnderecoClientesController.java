@@ -23,11 +23,6 @@ public class RegistroEnderecoClientesController {
     @Autowired
     private RegistroEnderecoClientesService registroEnderecoClientesService;
 
-    public RegistroEnderecoClientesController(RegistroEnderecoClientesService registroEnderecoClientesService) {
-        this.registroEnderecoClientesService = registroEnderecoClientesService;
-    }
-
-
     @PostMapping("/")
     public ResponseEntity<RegistroEnderecoClientesModel> saveEnderecos(@RequestBody @Valid RegistroEnderecoClientesDto registroEnderecoClientesDto){
         var registroEnderecoClientesModel = new RegistroEnderecoClientesModel();
